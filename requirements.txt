@@ -1,0 +1,9 @@
+trimesh
+open3d
+pywavelets
+scikit-image
+matplotlib
+pillow
+scipy
+rtree
+numpy
