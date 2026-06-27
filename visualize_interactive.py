@@ -38,5 +38,5 @@ def run_interactive_viewer(mesh_path):
                                       mesh_show_back_face=True)
 
 if __name__ == "__main__":
-    # We load the multi-cube reconstructed mesh
-    run_interactive_viewer("data/decoded/multicube_reconstructed.ply")
+    # Loads the BEST reconstruction: Ultimate Hybrid (Multi-Layer + Residual Safety Net)
+    run_interactive_viewer("data/decoded/ultimate_reconstructed.ply")
