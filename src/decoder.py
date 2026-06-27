@@ -3,9 +3,10 @@ import open3d as o3d
 import time
 from src.raycasting import FACES, get_camera_rays
 
-def decode_point_cloud(height_maps, resolution=512):
+def decode_point_cloud(height_maps, resolution=512, invert_normals=False):
     """
     Back-projects the height maps into a single dense 3D point cloud.
+    If invert_normals is True, surface normals will point along the ray direction (used for back-faces).
     """
     all_points = []
     all_normals = []
@@ -22,8 +23,12 @@ def decode_point_cloud(height_maps, resolution=512):
         valid_directions = directions[valid]
         
         points = valid_origins + valid_directions * valid_distances[:, np.newaxis]
-        # For external cameras, the surface normal generally points back at the camera
-        normals = -valid_directions
+        # For external cameras, the surface normal points back at the camera.
+        # For internal (back-faces), the surface normal points along the ray direction.
+        if invert_normals:
+            normals = valid_directions
+        else:
+            normals = -valid_directions
         
         all_points.append(points)
         all_normals.append(normals)
