@@ -7,17 +7,17 @@ def generate_pdf():
     
     pdf = MarkdownPdf(toc_level=2)
     
-    with open("thesis.md", "r", encoding="utf-8") as f:
+    with open("final_report.md", "r", encoding="utf-8") as f:
         md_content = f.read()
 
     # Add the markdown content as a section
     pdf.add_section(Section(md_content))
     
     # Save the PDF
-    pdf.meta["title"] = "Multi-Layer Depth Peeling with Residual Safety Nets"
+    pdf.meta["title"] = "Final Project Report: 3D Mesh Compression"
     pdf.meta["author"] = "MTech Thesis"
     
-    out_name = "MTech_Thesis_CubeMeshCompression.pdf"
+    out_name = "Final_Project_Report.pdf"
     pdf.save(out_name)
     print(f"Successfully generated {out_name}")
 
